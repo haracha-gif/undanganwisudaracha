@@ -1,7 +1,6 @@
-
-  "use client"
-
-import { useState } from "react"
+    "use client"
+    import { motion } from "framer-motion"
+    import { useState } from "react"
 
 export default function GraduationInvitation() {
   const [open, setOpen] = useState(false)
@@ -10,6 +9,10 @@ export default function GraduationInvitation() {
   const [message, setMessage] = useState("")
   const [messages, setMessages] = useState([])
   const [selectedImage, setSelectedImage] = useState(null)
+  const clickSound = () => {
+  const audio = new Audio("/click.mp3")
+  audio.play()
+}
   const handleSubmit = () => {
   if (!name || !message) return
 
@@ -26,32 +29,31 @@ export default function GraduationInvitation() {
 }
 
     if (!open) {
-      return (
-        <div
-  className={`min-h-screen font-sans transition-all duration-500 ${
-    darkMode
-      ? "bg-gradient-to-b from-black via-neutral-900 to-neutral-950 text-white"
-      : "bg-gradient-to-b from-yellow-50 to-white text-neutral-800"
-  }`}
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center text-center bg-gradient-to-b from-yellow-100 to-white px-6">
+
+      <h1 className={`text-5xl md:text-7xl font-serif font-bold animate-pulse ${
+  darkMode ? "text-white" : "text-yellow-800"
+}`}
 >
-
-          <h1 className="text-5xl md:text-7xl font-serif font-bold text-yellow-800 animate-pulse">
         Zahara Chairani
-          </h1>
+      </h1>
 
-           <p className="mt-6 text-neutral-700 text-lg max-w-xl">
+      <p className={`mt-6 text-lg ${
+  darkMode ? "text-neutral-300" : "text-neutral-700"
+}`}>
         Graduation Invitation 2026
       </p>
 
       <button
         onClick={() => setOpen(true)}
-        className="mt-10 px-8 py-4 bg-yellow-700 text-white rounded-full shadow-lg hover:scale-105 transition"
+        className="mt-10 px-8 py-4 bg-yellow-700 text-white rounded-full shadow-lg hover:scale-105 transition duration-300"
       >
         Open Invitation ✨
       </button>
     </div>
   )
-    }
+}
 
   return (
     <>
@@ -59,28 +61,45 @@ export default function GraduationInvitation() {
   <source src="/bg-music.mp3.mp3" type="audio/mpeg" />
 </audio> 
 
-    <div className="min-h-screen bg-gradient-to-b from-yellow-50 to-white text-neutral-800 font-sans">
-      <div className="fixed top-5 right-5 z-50">
+    <div
+  className={`min-h-screen font-sans transition-all duration-500 animate-fadeIn ${
+    darkMode
+      ? "bg-neutral-900 text-white"
+      : "bg-gradient-to-b from-yellow-50 to-white text-neutral-800"
+  }`}
+>
+  <div className="fixed top-5 right-5 z-50">
   <button
     onClick={() => setDarkMode(!darkMode)}
-    className="px-4 py-2 rounded-full bg-yellow-700 text-white shadow-lg hover:scale-105 transition"
+    className="bg-yellow-700 text-neutral px-4 py-2 rounded-full shadow-lg"
+    
   >
     {darkMode ? "☀️ Light" : "🌙 Dark"}
   </button>
 </div>
+
       {/* Hero Section */}
-      <section className="relative overflow-hidden px-6 py-20 text-center">
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_top,_#facc15,_transparent_60%)]" />
+      <section className="relative overflow-hidden px-6 py-20 text-center min-h-screen flex flex-col items-center justify-center">
+        <div className="absolute inset-0 pointer-events-none opacity-10 bg-[radial-gradient(circle_at_top,_#facc15,_transparent_60%)]" />
         <div className="absolute top-10 left-10 text-5xl animate-bounce opacity-30">
+        🌸
+        </div>
+        <div className="absolute bottom-10 right-20 text-5xl animate-bounce opacity-20">
         🌸
         </div>
 
         <div className="absolute top-20 right-16 text-4xl animate-pulse opacity-40">
         ✨
         </div>
+        <div className="absolute top-20 left-1/4 text-3xl animate-pulse opacity-20">
+        ✨
+        </div>
 
         <div className="absolute bottom-10 left-1/4 text-6xl opacity-20 animate-pulse">
-       🌼
+       💫
+        </div>
+        <div className="absolute top-1/2 left-10 text-4xl animate-pulse opacity-10">
+        💫
         </div>
         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_top,_#facc15,_transparent_60%)]" />
         <div className="relative max-w-3xl mx-auto">
@@ -88,11 +107,15 @@ export default function GraduationInvitation() {
             Graduation Invitation
           </p>
 
-          <h1 className="text-5xl md:text-7xl font-serif font-bold leading-tight text-yellow-800">
+          <h1 className={`text-5xl md:text-7xl font-serif font-bold leading-tight ${
+  darkMode ? "text-white" : "text-yellow-800"
+}`}>
             Zahara Chairani
           </h1>
 
-          <p className="mt-6 text-lg md:text-xl text-neutral-700 leading-relaxed">
+          <p className={`mt-6 text-lg md:text-xl leading-relaxed ${
+  darkMode ? "text-neutral-300" : "text-neutral-700"
+}`}>
             Dengan penuh rasa syukur, saya mengundang teman, keluarga,
             dan orang-orang tersayang untuk hadir dalam momen wisuda saya.
             Karena setelah sekian semester begadang, revisi, dan mental
@@ -105,7 +128,7 @@ export default function GraduationInvitation() {
               Save The Date
             </p>
             <h2 className="mt-2 text-3xl font-bold text-yellow-700">
-              May 24 2026
+              May 24th, 2026
             </h2>
             <p className="mt-2 text-neutral-600">
               Kampus 1 UIN Syarif Hidayatullah Jakarta, Tangerang Selatan
@@ -116,17 +139,34 @@ export default function GraduationInvitation() {
       </section>
 
       {/* Detail Section */}
-      <section className="px-6 py-16">
+      <motion.section
+      initial={{ opacity: 0, y: 80 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1 }}
+      viewport={{ once: true }}
+      className="px-6 py-16"
+      >
+
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
-          <div className="bg-white rounded-3xl p-8 shadow-lg border border-yellow-100">
+          <div
+  className={`rounded-3xl p-8 shadow-lg ${
+    darkMode
+      ? "bg-neutral-800 text-white"
+      : "bg-white text-neutral-800"
+  }`}
+>
             <h3 className="text-2xl font-bold text-yellow-700 mb-4">
               Detail Acara
             </h3>
 
-            <div className="space-y-4 text-neutral-700">
+            <div
+  className={`space-y-4 ${
+    darkMode ? "text-neutral-200" : "text-neutral-700"
+  }`}
+>
               <div>
                 <p className="font-semibold">Tanggal</p>
-                <p>24 Mei 2026</p>
+                <p>May 24th, 2026</p>
               </div>
 
               <div>
@@ -163,7 +203,9 @@ export default function GraduationInvitation() {
             </div>
           </div>
 
-          <div className="bg-yellow-100 rounded-3xl p-8 shadow-lg border border-yellow-200 flex flex-col justify-center">
+          <div className={`bg-yellow-100 rounded-3xl p-8 shadow-lg border border-yellow-200 flex flex-col justify-center ${
+    darkMode ? "bg-neutral-800 border-neutral-700" : ""
+  }`}>
             <h3 className="text-2xl font-bold text-yellow-800 mb-4">
               Pesan Kecil
             </h3>
@@ -172,11 +214,11 @@ export default function GraduationInvitation() {
               Terima kasih sudah menjadi bagian dari perjalanan saya.
               Kehadiran kalian di hari spesial ini akan sangat berarti.
               Dan ya, saya akhirnya berhasil menyelesaikan ini tanpa
-              berubah menjadi villain akademik sepenuhnya.
+              berubah menjadi villain akademik sepenuhnya (tolong segera dikicaukan).
             </p>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Gallery Placeholder */}
       <section className="px-6 py-16">
@@ -186,18 +228,33 @@ export default function GraduationInvitation() {
           </h3>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {["/publicfoto5.jpg", "/publicfoto3.jpg.jpg", "/publicfoto4.jpg.jpg", "/publicfoto6.jpg", "/publicfoto7.jpg"].map((photo, index) => (
-  <div
+            {["/foto4.jpg", "/foto8.jpg", "/foto3.jpg", "/foto6.jpg", "/foto5.jpg", "/foto7.jpg"].map((photo, index) => (
+  <motion.div
     key={index}
-    onClick={() => setSelectedImage(photo)}
-    className="overflow-hidden rounded-3xl shadow-lg border border-yellow-200 cursor-pointer"
+    onClick={() =>
+      setSelectedImage(selectedImage === index ? null : index)
+    }
+
+    whileHover={{ scale: 1.03, rotate: 1 }}
+
+    className="relative bg-white p-3 rounded-2xl shadow-2xl cursor-pointer rotate-[-2deg]"
   >
-    <img
-      src={photo}
-      alt={`Gallery ${index + 1}`}
-      className="w-full h-full object-cover hover:scale-105 transition duration-500"
-    />
-  </div>
+    {selectedImage === index ? (
+      <motion.img
+        initial={{ rotateY: 90, opacity: 0 }}
+        animate={{ rotateY: 0, opacity: 1 }}
+        transition={{ duration: 0.6 }}
+
+        src={photo}
+        alt=""
+        className="w-full aspect-[3/4] object-cover rounded-xl"
+      />
+    ) : (
+      <div className="w-full aspect-[3/4] bg-yellow-100 rounded-xl flex items-center justify-center text-5xl">
+        🎞️
+      </div>
+    )}
+  </motion.div>
 ))}
             
           </div>
@@ -212,21 +269,35 @@ export default function GraduationInvitation() {
       Leave a Message 💌
     </h3>
 
-    <div className="bg-white rounded-3xl p-8 shadow-lg border border-yellow-100">
+    <div
+  className={`rounded-3xl p-8 shadow-lg border ${
+    darkMode
+      ? "bg-neutral-800 border-neutral-700"
+      : "bg-white border-yellow-100"
+  }`}
+>
 
       <input
         type="text"
         placeholder="Your Name"
         value={name}
         onChange={(e) => setName(e.target.value)}
-        className="w-full mb-4 p-3 rounded-xl border border-yellow-200"
+        className={`w-full mb-4 p-3 rounded-xl border ${
+  darkMode
+    ? "bg-neutral-700 border-neutral-600 text-white"
+    : "border-yellow-200"
+}`}
       />
 
       <textarea
         placeholder="Write your wishes here..."
         value={message}
         onChange={(e) => setMessage(e.target.value)}
-        className="w-full mb-4 p-3 rounded-xl border border-yellow-200 h-32"
+        className={`w-full mb-4 p-3 rounded-xl border h-32 ${
+  darkMode
+    ? "bg-neutral-700 border-neutral-600 text-white"
+    : "border-yellow-200"
+}`}
       />
 
       <button
@@ -256,13 +327,23 @@ export default function GraduationInvitation() {
 
   </div>
 </section>
-      {selectedImage && (
+      {selectedImage !== null && (
   <div
     className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 px-4"
-    onClick={() => setSelectedImage(null)}
+    onClick={() => {
+  clickSound()
+  setSelectedImage(null)
+}}
   >
     <img
-      src={selectedImage}
+      src={[
+        "/foto4.jpg",
+        "/foto8.jpg",
+        "/foto3.jpg",
+        "/foto6.jpg",
+        "/foto5.jpg",
+        "/foto7.jpg",
+      ][selectedImage]}
       alt="Preview"
       className="max-h-[90vh] rounded-3xl shadow-2xl"
     />
