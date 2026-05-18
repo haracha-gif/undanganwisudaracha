@@ -171,7 +171,7 @@ export default function GraduationInvitation() {
 
               <div>
                 <p className="font-semibold">Waktu</p>
-                <p>10.00 WIB - selesai</p>
+                <p>10.00 WIB - selesai (pulang duluan juga gapapa) </p>
               </div>
 
               <div>
@@ -198,7 +198,7 @@ export default function GraduationInvitation() {
 
               <div>
                 <p className="font-semibold">Dresscode</p>
-                <p>Semi formal (sing penting rapi dan nyaman aja!) </p>
+                <p>Semi formal cenderung santai (sing penting rapi dan nyaman aja!) </p>
               </div>
             </div>
           </div>
@@ -356,7 +356,7 @@ export default function GraduationInvitation() {
         </p>
 
         <p className="mt-3 text-sm text-neutral-500">
-          Dibuat dengan kopi, revisi, curhat dengan chatgpt dan sisa kewarasan mahasiswa tingkat akhir.
+          Dibuat dengan es chocolatos, revisi, curhat dengan chatgpt dan sisa kewarasan mahasiswa tingkat akhir.
         </p>
       </footer>
     </div>
