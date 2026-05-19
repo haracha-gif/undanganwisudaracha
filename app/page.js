@@ -5,27 +5,10 @@
 export default function GraduationInvitation() {
   const [open, setOpen] = useState(false)
   const [darkMode, setDarkMode] = useState(false)
-  const [name, setName] = useState("")
-  const [message, setMessage] = useState("")
-  const [messages, setMessages] = useState([])
   const [selectedImage, setSelectedImage] = useState(null)
   const clickSound = () => {
   const audio = new Audio("/click.mp3")
   audio.play()
-}
-  const handleSubmit = () => {
-  if (!name || !message) return
-
-  setMessages([
-    ...messages,
-    {
-      name,
-      message,
-    },
-  ])
-
-  setName("")
-  setMessage("")
 }
 
     if (!open) {
@@ -269,7 +252,9 @@ export default function GraduationInvitation() {
       Leave a Message 💌
     </h3>
 
-    <div
+    <form
+  action="https://formspree.io/f/xdajklkd"
+  method="POST"
   className={`rounded-3xl p-8 shadow-lg border ${
     darkMode
       ? "bg-neutral-800 border-neutral-700"
@@ -278,10 +263,9 @@ export default function GraduationInvitation() {
 >
 
       <input
-        type="text"
-        placeholder="Your Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
+  type="text"
+  name="name"
+  placeholder="Your Name"
         className={`w-full mb-4 p-3 rounded-xl border ${
   darkMode
     ? "bg-neutral-700 border-neutral-600 text-white"
@@ -290,9 +274,8 @@ export default function GraduationInvitation() {
       />
 
       <textarea
-        placeholder="Write your wishes here..."
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
+  name="message"
+  placeholder="Write your wishes here..."
         className={`w-full mb-4 p-3 rounded-xl border h-32 ${
   darkMode
     ? "bg-neutral-700 border-neutral-600 text-white"
@@ -301,29 +284,12 @@ export default function GraduationInvitation() {
       />
 
       <button
-        onClick={handleSubmit}
+  type="submit"
         className="px-6 py-3 bg-yellow-700 text-white rounded-full hover:scale-105 transition"
       >
         Send Message ✨
       </button>
-    </div>
-
-    <div className="mt-10 space-y-4">
-      {messages.map((msg, index) => (
-        <div
-          key={index}
-          className="bg-yellow-50 rounded-2xl p-5 shadow"
-        >
-          <h4 className="font-bold text-yellow-700">
-            {msg.name}
-          </h4>
-
-          <p className="mt-2 text-neutral-700">
-            {msg.message}
-          </p>
-        </div>
-      ))}
-    </div>
+    </form>
 
   </div>
 </section>
